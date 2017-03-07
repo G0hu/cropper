@@ -1,0 +1,15 @@
+PODS:
+  - ALCameraViewController (1.2.7)
+  - TOCropViewController (2.0.12)
+
+DEPENDENCIES:
+  - ALCameraViewController
+  - TOCropViewController
+
+SPEC CHECKSUMS:
+  ALCameraViewController: 4a513b8d5ecfdb3f34c50b1d469c373aae1ec7b4
+  TOCropViewController: e6e31b38d785a901e5651a1e7fff71bcda6c5214
+
+PODFILE CHECKSUM: d69164b80d2abe0592355bff98fa914bdfa14e24
+
+COCOAPODS: 1.2.0
