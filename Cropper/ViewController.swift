@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EasyImagy
 import ALCameraViewController
 
 class ViewController: UIViewController {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A1B1FA51E6F28DD00CA0BFD /* EasyImagy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1B1F9C1E6F28C900CA0BFD /* EasyImagy.framework */; };
+		9A1B1FA61E6F28DD00CA0BFD /* EasyImagy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1B1F9C1E6F28C900CA0BFD /* EasyImagy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9A29895F1E6EFA7300DBDA63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A29895E1E6EFA7300DBDA63 /* AppDelegate.swift */; };
 		9A2989611E6EFA7300DBDA63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2989601E6EFA7300DBDA63 /* ViewController.swift */; };
 		9A2989661E6EFA7300DBDA63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2989651E6EFA7300DBDA63 /* Assets.xcassets */; };
@@ -14,8 +16,68 @@
 		A11341E8F5966FBB88A24F88 /* Pods_Cropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F153DAD3AB98F104B50B1B /* Pods_Cropper.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9A1B1F9B1E6F28C900CA0BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1B1F931E6F28C900CA0BFD /* EasyImagy.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D65FF0711AFB66C7006CC985;
+			remoteInfo = "EasyImagy-iOS";
+		};
+		9A1B1F9D1E6F28C900CA0BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1B1F931E6F28C900CA0BFD /* EasyImagy.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D69C33A61C8D3D2A007985D4;
+			remoteInfo = "EasyImagy-OSX";
+		};
+		9A1B1F9F1E6F28C900CA0BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1B1F931E6F28C900CA0BFD /* EasyImagy.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D65FF07C1AFB66C7006CC985;
+			remoteInfo = "EasyImagy-iOS Tests";
+		};
+		9A1B1FA11E6F28C900CA0BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1B1F931E6F28C900CA0BFD /* EasyImagy.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D69C33AF1C8D3D2A007985D4;
+			remoteInfo = "EasyImagy-OSX Tests";
+		};
+		9A1B1FA31E6F28C900CA0BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1B1F931E6F28C900CA0BFD /* EasyImagy.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D6C2EDF81B031A0900E2B876;
+			remoteInfo = EasyImagySample;
+		};
+		9A1B1FA71E6F28DD00CA0BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1B1F931E6F28C900CA0BFD /* EasyImagy.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D65FF0701AFB66C7006CC985;
+			remoteInfo = "EasyImagy-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9A854A7A1E6F279E00B33DD8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9A1B1FA61E6F28DD00CA0BFD /* EasyImagy.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1B5A5C6C17242F551712A53B /* Pods-Cropper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cropper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cropper/Pods-Cropper.debug.xcconfig"; sourceTree = "<group>"; };
+		9A1B1F931E6F28C900CA0BFD /* EasyImagy.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EasyImagy.xcodeproj; path = "../../../../../Downloads/EasyImagy-swift-3/EasyImagy.xcodeproj"; sourceTree = "<group>"; };
 		9A29895B1E6EFA7300DBDA63 /* Cropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cropper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A29895E1E6EFA7300DBDA63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A2989601E6EFA7300DBDA63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1B1FA51E6F28DD00CA0BFD /* EasyImagy.framework in Frameworks */,
 				A11341E8F5966FBB88A24F88 /* Pods_Cropper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,6 +101,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A1B1F941E6F28C900CA0BFD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A1B1F9C1E6F28C900CA0BFD /* EasyImagy.framework */,
+				9A1B1F9E1E6F28C900CA0BFD /* EasyImagy.framework */,
+				9A1B1FA01E6F28C900CA0BFD /* EasyImagyTests.xctest */,
+				9A1B1FA21E6F28C900CA0BFD /* EasyImagyTests.xctest */,
+				9A1B1FA41E6F28C900CA0BFD /* EasyImagySample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A2989521E6EFA7300DBDA63 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +134,7 @@
 		9A29895D1E6EFA7300DBDA63 /* Cropper */ = {
 			isa = PBXGroup;
 			children = (
+				9A1B1F931E6F28C900CA0BFD /* EasyImagy.xcodeproj */,
 				9A29895E1E6EFA7300DBDA63 /* AppDelegate.swift */,
 				9A2989601E6EFA7300DBDA63 /* ViewController.swift */,
 				9AE789D71E6F01C600DF0E5F /* LaunchScreen.storyboard */,
@@ -98,10 +174,12 @@
 				9A2989591E6EFA7300DBDA63 /* Resources */,
 				81D8C12807D91B1E9098471F /* [CP] Embed Pods Frameworks */,
 				4DD78F3CC863890CE3827C68 /* [CP] Copy Pods Resources */,
+				9A854A7A1E6F279E00B33DD8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9A1B1FA81E6F28DD00CA0BFD /* PBXTargetDependency */,
 			);
 			name = Cropper;
 			productName = Cropper;
@@ -135,12 +213,56 @@
 			mainGroup = 9A2989521E6EFA7300DBDA63;
 			productRefGroup = 9A29895C1E6EFA7300DBDA63 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9A1B1F941E6F28C900CA0BFD /* Products */;
+					ProjectRef = 9A1B1F931E6F28C900CA0BFD /* EasyImagy.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9A29895A1E6EFA7300DBDA63 /* Cropper */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9A1B1F9C1E6F28C900CA0BFD /* EasyImagy.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EasyImagy.framework;
+			remoteRef = 9A1B1F9B1E6F28C900CA0BFD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A1B1F9E1E6F28C900CA0BFD /* EasyImagy.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EasyImagy.framework;
+			remoteRef = 9A1B1F9D1E6F28C900CA0BFD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A1B1FA01E6F28C900CA0BFD /* EasyImagyTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = EasyImagyTests.xctest;
+			remoteRef = 9A1B1F9F1E6F28C900CA0BFD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A1B1FA21E6F28C900CA0BFD /* EasyImagyTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = EasyImagyTests.xctest;
+			remoteRef = 9A1B1FA11E6F28C900CA0BFD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A1B1FA41E6F28C900CA0BFD /* EasyImagySample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = EasyImagySample.app;
+			remoteRef = 9A1B1FA31E6F28C900CA0BFD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9A2989591E6EFA7300DBDA63 /* Resources */ = {
@@ -213,6 +335,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A1B1FA81E6F28DD00CA0BFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "EasyImagy-iOS";
+			targetProxy = 9A1B1FA71E6F28DD00CA0BFD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9A29896B1E6EFA7300DBDA63 /* Debug */ = {
@@ -310,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1B5A5C6C17242F551712A53B /* Pods-Cropper.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cropper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -323,6 +454,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F2BE0C5DC4F22D5B943B6184 /* Pods-Cropper.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cropper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
