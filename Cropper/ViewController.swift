@@ -33,7 +33,11 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
     
     @objc private func showCameraRoll() {
         let cameraViewController = CameraViewController(croppingEnabled: false) { [weak self] image, asset in
-            self?.dismiss(animated: true, completion: { self?.presentCropViewController(image: image!) })
+            if let img = image {
+                self?.dismiss(animated: true, completion: { self?.presentCropViewController(image: img) })
+            } else {
+                self?.dismiss(animated: true, completion: nil)
+            }
         }
         
         present(cameraViewController, animated: true, completion: nil)
