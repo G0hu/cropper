@@ -45,6 +45,7 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
     
     private func presentCropViewController(image: UIImage) {
         let cropViewController: TOCropViewController = TOCropViewController(image: image)
+        cropViewController.cropView.aspectRatioLockEnabled = true
         cropViewController.delegate = self
         
         self.present(cropViewController, animated: true, completion: nil)

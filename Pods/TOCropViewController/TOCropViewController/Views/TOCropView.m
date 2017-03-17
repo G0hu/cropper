@@ -666,7 +666,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     // reset it to zero here. But set the ivar directly since there's no point
     // in performing the relayout calculations right before a reset.
     if (self.hasAspectRatio && self.resetAspectRatioEnabled) {
-        _aspectRatio = CGSizeZero;
+        _aspectRatio = CGSizeMake(3.0f, 1.0f);
     }
     
     if (animated == NO || self.angle != 0) {
@@ -1462,27 +1462,36 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     //Work out the dimensions of the crop box when rotated
     CGRect newCropFrame = CGRectZero;
-    if (labs(self.angle) == labs(self.cropBoxLastEditedAngle) || (labs(self.angle)*-1) == ((labs(self.cropBoxLastEditedAngle) - 180) % 360)) {
-        newCropFrame.size = self.cropBoxLastEditedSize;
-        
-        self.scrollView.minimumZoomScale = self.cropBoxLastEditedMinZoomScale;
-        self.scrollView.zoomScale = self.cropBoxLastEditedZoomScale;
-    }
-    else {
-        newCropFrame.size = (CGSize){floorf(self.cropBoxFrame.size.height * scale), floorf(self.cropBoxFrame.size.width * scale)};
-        
-        //Re-adjust the scrolling dimensions of the scroll view to match the new size
-        self.scrollView.minimumZoomScale *= scale;
-        self.scrollView.zoomScale *= scale;
-    }
+//    if (labs(self.angle) == labs(self.cropBoxLastEditedAngle) || (labs(self.angle)*-1) == ((labs(self.cropBoxLastEditedAngle) - 180) % 360)) {
+//        newCropFrame.size = self.cropBoxLastEditedSize;
+//        
+//        self.scrollView.minimumZoomScale = self.cropBoxLastEditedMinZoomScale;
+//        self.scrollView.zoomScale = self.cropBoxLastEditedZoomScale;
+//    }
+//    else {
+//        newCropFrame.size = (CGSize){floorf(self.cropBoxFrame.size.height * scale), floorf(self.cropBoxFrame.size.width * scale)};
+//        
+//        //Re-adjust the scrolling dimensions of the scroll view to match the new size
+//        self.scrollView.minimumZoomScale *= scale;
+//        self.scrollView.zoomScale *= scale;
+//    }
+//    
+//    newCropFrame.origin.x = floorf((CGRectGetWidth(self.bounds) - newCropFrame.size.width) * 0.5f);
+//    newCropFrame.origin.y = floorf((CGRectGetHeight(self.bounds) - newCropFrame.size.height) * 0.5f);
     
-    newCropFrame.origin.x = floorf((CGRectGetWidth(self.bounds) - newCropFrame.size.width) * 0.5f);
-    newCropFrame.origin.y = floorf((CGRectGetHeight(self.bounds) - newCropFrame.size.height) * 0.5f);
+    CGFloat ratio = cropBoxFrame.size.height / cropBoxFrame.size.width;
+    CGFloat width = MIN(cropBoxFrame.size.width, self.backgroundImageView.frame.size.width);
+    newCropFrame.origin = self.backgroundImageView.frame.origin;
+//    newCropFrame.size = (CGSize){
+//        ratio,
+//        width
+//    };
+    //newCropFrame.size = (CGSize){floorf(self.cropBoxFrame.size.height * scale), floorf(self.cropBoxFrame.size.width * scale)};
     
     //If we're animated, generate a snapshot view that we'll animate in place of the real view
     UIView *snapshotView = nil;
     if (animated) {
-        snapshotView = [self.foregroundContainerView snapshotViewAfterScreenUpdates:NO];
+        //snapshotView = [self.foregroundContainerView snapshotViewAfterScreenUpdates:NO];
         self.rotateAnimationInProgress = YES;
     }
     
@@ -1493,7 +1502,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     CGSize containerSize = self.backgroundContainerView.frame.size;
     self.backgroundContainerView.frame = (CGRect){CGPointZero, {containerSize.height, containerSize.width}};
     self.backgroundImageView.frame = (CGRect){CGPointZero, self.backgroundImageView.frame.size};
-
+    
     //Rotate the foreground image view to match
     self.foregroundContainerView.transform = CGAffineTransformIdentity;
     self.foregroundImageView.transform = rotation;
@@ -1544,7 +1553,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
         self.backgroundContainerView.hidden = YES;
         self.foregroundContainerView.hidden = YES;
         self.translucencyView.hidden = YES;
-        self.gridOverlayView.hidden = YES;
+        self.gridOverlayView.hidden = NO;
         
         [UIView animateWithDuration:0.45f delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.8f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             CGAffineTransform transform = CGAffineTransformRotate(CGAffineTransformIdentity, clockwise ? M_PI_2 : -M_PI_2);
@@ -1557,7 +1566,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
             self.gridOverlayView.hidden = NO;
             
             self.backgroundContainerView.alpha = 0.0f;
-            self.gridOverlayView.alpha = 0.0f;
+            self.gridOverlayView.alpha = 1.0f;
             
             self.translucencyView.alpha = 1.0f;
             

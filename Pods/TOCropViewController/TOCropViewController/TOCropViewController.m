@@ -85,8 +85,10 @@
         _image = image;
         _croppingStyle = style;
         
-        _aspectRatioPreset = TOCropViewControllerAspectRatioPresetOriginal;
+        _aspectRatioPreset = TOCropViewControllerAspectRatioPreset3x1;
         _toolbarPosition = TOCropViewControllerToolbarPositionBottom;
+        self.cropView.aspectRatioLockEnabled = YES;
+        self.toolbar.clampButtonGlowing = YES;
         _rotateClockwiseButtonHidden = YES;
     }
     
@@ -149,8 +151,10 @@
         [self.cropView setBackgroundImageViewHidden:YES animated:NO];
     }
 
-    if (self.aspectRatioPreset != TOCropViewControllerAspectRatioPresetOriginal) {
-        [self setAspectRatioPreset:self.aspectRatioPreset animated:NO];
+    if (self.aspectRatioPreset != TOCropViewControllerAspectRatioUndefined) {
+        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset3x1 animated:NO];
+        self.cropView.aspectRatioLockEnabled = YES;
+        self.toolbar.clampButtonGlowing = YES;
     }
 }
 
@@ -383,7 +387,7 @@
     BOOL animated = (self.cropView.angle == 0);
     
     if (self.resetAspectRatioEnabled) {
-        self.aspectRatioLockEnabled = NO;
+        self.aspectRatioLockEnabled = YES;
     }
     
     [self.cropView resetLayoutToDefaultAnimated:animated];
@@ -392,14 +396,13 @@
 #pragma mark - Aspect Ratio Handling -
 - (void)showAspectRatioDialog
 {
-    if (self.cropView.aspectRatioLockEnabled) {
-        self.cropView.aspectRatioLockEnabled = NO;
-        self.toolbar.clampButtonGlowing = NO;
-        return;
+    if (!self.cropView.aspectRatioLockEnabled) {
+        self.cropView.aspectRatioLockEnabled = YES;
+        self.toolbar.clampButtonGlowing = YES;
     }
     
     //Depending on the shape of the image, work out if horizontal, or vertical options are required
-    BOOL verticalCropBox = self.cropView.cropBoxAspectRatioIsPortrait;
+    BOOL verticalCropBox = NO;
     
     // In CocoaPods, strings are stored in a separate bundle from the main one
     NSBundle *resourceBundle = nil;
@@ -414,18 +417,18 @@
     
     //Prepare the localized options
     NSString *cancelButtonTitle = NSLocalizedStringFromTableInBundle(@"Cancel", @"TOCropViewControllerLocalizable", resourceBundle, nil);
-    NSString *originalButtonTitle = NSLocalizedStringFromTableInBundle(@"Original", @"TOCropViewControllerLocalizable", resourceBundle, nil);
-    NSString *squareButtonTitle = NSLocalizedStringFromTableInBundle(@"Square", @"TOCropViewControllerLocalizable", resourceBundle, nil);
+    //NSString *originalButtonTitle = NSLocalizedStringFromTableInBundle(@"Original", @"TOCropViewControllerLocalizable", resourceBundle, nil);
+    //NSString *squareButtonTitle = NSLocalizedStringFromTableInBundle(@"Square", @"TOCropViewControllerLocalizable", resourceBundle, nil);
     
     //Prepare the list that will be fed to the alert view/controller
     NSMutableArray *items = [NSMutableArray array];
-    [items addObject:originalButtonTitle];
-    [items addObject:squareButtonTitle];
+    //[items addObject:originalButtonTitle];
+    //[items addObject:squareButtonTitle];
     if (verticalCropBox) {
-        [items addObjectsFromArray:@[@"2:3", @"3:5", @"3:4", @"4:5", @"5:7", @"9:16"]];
+        [items addObjectsFromArray:@[@"3 pieces", @"4 pieces", @"5 pieces"]];
     }
     else {
-        [items addObjectsFromArray:@[@"3:2", @"5:3", @"4:3", @"5:4", @"7:5", @"16:9"]];
+        [items addObjectsFromArray:@[@"3 pieces", @"4 pieces", @"5 pieces"]];
     }
     
     //Present via a UIAlertController if >= iOS 8
@@ -490,37 +493,19 @@
     _aspectRatioPreset = aspectRatioPreset;
     
     switch (aspectRatioPreset) {
-        case TOCropViewControllerAspectRatioPresetOriginal:
-            aspectRatio = CGSizeZero;
+        case TOCropViewControllerAspectRatioPreset3x1:
+            aspectRatio = CGSizeMake(3.0f, 1.0f);
             break;
-        case TOCropViewControllerAspectRatioPresetSquare:
-            aspectRatio = CGSizeMake(1.0f, 1.0f);
+        case TOCropViewControllerAspectRatioPreset4x1:
+            aspectRatio = CGSizeMake(4.0f, 1.0f);
             break;
-        case TOCropViewControllerAspectRatioPreset3x2:
-            aspectRatio = CGSizeMake(3.0f, 2.0f);
-            break;
-        case TOCropViewControllerAspectRatioPreset5x3:
-            aspectRatio = CGSizeMake(5.0f, 3.0f);
-            break;
-        case TOCropViewControllerAspectRatioPreset4x3:
-            aspectRatio = CGSizeMake(4.0f, 3.0f);
-            break;
-        case TOCropViewControllerAspectRatioPreset5x4:
-            aspectRatio = CGSizeMake(5.0f, 4.0f);
-            break;
-        case TOCropViewControllerAspectRatioPreset7x5:
-            aspectRatio = CGSizeMake(7.0f, 5.0f);
-            break;
-        case TOCropViewControllerAspectRatioPreset16x9:
-            aspectRatio = CGSizeMake(16.0f, 9.0f);
-            break;
-        case TOCropViewControllerAspectRatioPresetCustom:
-            aspectRatio = self.customAspectRatio;
+        case TOCropViewControllerAspectRatioPreset5x1:
+            aspectRatio = CGSizeMake(5.0f, 1.0f);
             break;
     }
     
-    //If the image is a portrait shape, flip the aspect ratio to match
-    if (aspectRatioPreset != TOCropViewControllerAspectRatioPresetCustom &&
+    // If the image is a portrait shape, flip the aspect ratio to match
+    if (aspectRatioPreset != TOCropViewControllerAspectRatioUndefined &&
         self.cropView.cropBoxAspectRatioIsPortrait &&
         !self.aspectRatioLockEnabled)
     {
@@ -535,11 +520,13 @@
 - (void)rotateCropViewClockwise
 {
     [self.cropView rotateImageNinetyDegreesAnimated:YES clockwise:YES];
+    [self setAspectRatioPreset:self.aspectRatioPreset animated:YES];
 }
 
 - (void)rotateCropViewCounterclockwise
 {
     [self.cropView rotateImageNinetyDegreesAnimated:YES clockwise:NO];
+    [self setAspectRatioPreset:self.aspectRatioPreset animated:YES];
 }
 
 #pragma mark - Crop View Delegates -
@@ -890,12 +877,6 @@
 {
     self.cropView.resetAspectRatioEnabled = resetAspectRatioEnabled;
     self.aspectRatioPickerButtonHidden = (resetAspectRatioEnabled == NO && self.aspectRatioLockEnabled);
-}
-
-- (void)setCustomAspectRatio:(CGSize)customAspectRatio
-{
-    _customAspectRatio = customAspectRatio;
-    [self setAspectRatioPreset:TOCropViewControllerAspectRatioPresetCustom animated:NO];
 }
 
 - (BOOL)resetAspectRatioEnabled
