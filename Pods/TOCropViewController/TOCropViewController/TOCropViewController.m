@@ -420,13 +420,9 @@
     
     //Prepare the localized options
     NSString *cancelButtonTitle = NSLocalizedStringFromTableInBundle(@"Cancel", @"TOCropViewControllerLocalizable", resourceBundle, nil);
-    //NSString *originalButtonTitle = NSLocalizedStringFromTableInBundle(@"Original", @"TOCropViewControllerLocalizable", resourceBundle, nil);
-    //NSString *squareButtonTitle = NSLocalizedStringFromTableInBundle(@"Square", @"TOCropViewControllerLocalizable", resourceBundle, nil);
     
     //Prepare the list that will be fed to the alert view/controller
     NSMutableArray *items = [NSMutableArray array];
-    //[items addObject:originalButtonTitle];
-    //[items addObject:squareButtonTitle];
     if (verticalCropBox) {
         [items addObjectsFromArray:@[@"2 pieces", @"3 pieces", @"4 pieces", @"5 pieces"]];
     }
@@ -443,7 +439,7 @@
         NSInteger i = 0;
         for (NSString *item in items) {
             UIAlertAction *action = [UIAlertAction actionWithTitle:item style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self setAspectRatioPreset:(TOCropViewControllerAspectRatioPreset)i animated:YES];
+                [self setAspectRatioPresetWithReset:(TOCropViewControllerAspectRatioPreset)i animated:YES];
                 self.aspectRatioLockEnabled = YES;
             }];
             [alertController addAction:action];
@@ -488,6 +484,12 @@
     self.aspectRatioLockEnabled = YES;
 }
 #pragma clang diagnostic pop
+
+- (void)setAspectRatioPresetWithReset:(TOCropViewControllerAspectRatioPreset)aspectRatioPreset animated:(BOOL)animated
+{
+    [self setAspectRatioPreset:aspectRatioPreset animated:animated];
+    [self resetCropViewLayout];
+}
 
 - (void)setAspectRatioPreset:(TOCropViewControllerAspectRatioPreset)aspectRatioPreset animated:(BOOL)animated
 {

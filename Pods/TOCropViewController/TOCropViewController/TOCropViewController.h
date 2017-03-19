@@ -250,6 +250,16 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
  */
 - (void)resetCropViewLayout;
 
+/**
+ Set the aspect ratio to be one of the available preset options. These presets have specific behaviour
+ such as swapping their dimensions depending on portrait or landscape sized images. Also resets the crop to
+ avoid infinite zooming.
+ 
+ @param aspectRatioPreset The aspect ratio preset
+ @param animated Whether the transition to the aspect ratio is animated
+ */
+- (void)setAspectRatioPresetWithReset:(TOCropViewControllerAspectRatioPreset)aspectRatioPreset animated:(BOOL)animated NS_SWIFT_NAME(setAspectRatioPresent(_:animated:));
+
 /** 
  Set the aspect ratio to be one of the available preset options. These presets have specific behaviour
  such as swapping their dimensions depending on portrait or landscape sized images.
