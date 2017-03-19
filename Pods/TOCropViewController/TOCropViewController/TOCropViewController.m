@@ -33,6 +33,7 @@
 
 /* The cropping style of the crop view */
 @property (nonatomic, assign, readwrite) TOCropViewCroppingStyle croppingStyle;
+@property (nonatomic, assign, readwrite) BOOL isVertical;
 
 /* Views */
 @property (nonatomic, strong) TOCropToolbar *toolbar;
@@ -84,8 +85,9 @@
         _transitionController = [[TOCropViewControllerTransitioning alloc] init];
         _image = image;
         _croppingStyle = style;
+        _isVertical = NO;
         
-        _aspectRatioPreset = TOCropViewControllerAspectRatioPreset3x1;
+        _aspectRatioPreset = TOCropViewControllerAspectRatioUndefined;
         _toolbarPosition = TOCropViewControllerToolbarPositionBottom;
         self.cropView.aspectRatioLockEnabled = YES;
         self.toolbar.clampButtonGlowing = YES;
@@ -151,7 +153,7 @@
         [self.cropView setBackgroundImageViewHidden:YES animated:NO];
     }
 
-    if (self.aspectRatioPreset != TOCropViewControllerAspectRatioUndefined) {
+    if (self.aspectRatioPreset != TOCropViewControllerAspectRatioPreset3x1) {
         [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset3x1 animated:NO];
         self.cropView.aspectRatioLockEnabled = YES;
         self.toolbar.clampButtonGlowing = YES;
@@ -390,7 +392,10 @@
         self.aspectRatioLockEnabled = YES;
     }
     
+    self.isVertical = NO;
+    //[self setAspectRatioPreset:self.aspectRatioPreset animated:NO];
     [self.cropView resetLayoutToDefaultAnimated:animated];
+    [self setAspectRatioPreset:self.aspectRatioPreset animated:NO];
 }
 
 #pragma mark - Aspect Ratio Handling -
@@ -489,7 +494,6 @@
 - (void)setAspectRatioPreset:(TOCropViewControllerAspectRatioPreset)aspectRatioPreset animated:(BOOL)animated
 {
     CGSize aspectRatio = CGSizeZero;
-    
     _aspectRatioPreset = aspectRatioPreset;
     
     switch (aspectRatioPreset) {
@@ -501,6 +505,15 @@
             break;
         case TOCropViewControllerAspectRatioPreset5x1:
             aspectRatio = CGSizeMake(5.0f, 1.0f);
+            break;
+        case TOCropViewControllerAspectRatioPreset1x3:
+            aspectRatio = CGSizeMake(1.0f, 3.0f);
+            break;
+        case TOCropViewControllerAspectRatioPreset1x4:
+            aspectRatio = CGSizeMake(1.0f, 4.0f);
+            break;
+        case TOCropViewControllerAspectRatioPreset1x5:
+            aspectRatio = CGSizeMake(1.0f, 5.0f);
             break;
     }
     
@@ -519,14 +532,62 @@
 
 - (void)rotateCropViewClockwise
 {
-    [self.cropView rotateImageNinetyDegreesAnimated:YES clockwise:YES];
-    [self setAspectRatioPreset:self.aspectRatioPreset animated:YES];
+    TOCropViewControllerAspectRatioPreset ratio = TOCropViewControllerAspectRatioUndefined;
+    switch (self.aspectRatioPreset) {
+        case TOCropViewControllerAspectRatioPreset3x1:
+            ratio = TOCropViewControllerAspectRatioPreset1x3;
+            break;
+        case TOCropViewControllerAspectRatioPreset4x1:
+            ratio = TOCropViewControllerAspectRatioPreset1x4;
+            break;
+        case TOCropViewControllerAspectRatioPreset5x1:
+            ratio = TOCropViewControllerAspectRatioPreset1x5;
+            break;
+        case TOCropViewControllerAspectRatioPreset1x3:
+            ratio = TOCropViewControllerAspectRatioPreset3x1;
+            break;
+        case TOCropViewControllerAspectRatioPreset1x4:
+            ratio = TOCropViewControllerAspectRatioPreset4x1;
+            break;
+        case TOCropViewControllerAspectRatioPreset1x5:
+            ratio = TOCropViewControllerAspectRatioPreset5x1;
+            break;
+    }
+    
+    // [self.cropView rotateImageNinetyDegreesAnimated:YES clockwise:YES];
+    [self setAspectRatioPreset:ratio animated:NO];
+    [self resetCropViewLayout];
+    //[self.cropView setAspectRatio:CGSizeZero animated:YES];
 }
 
 - (void)rotateCropViewCounterclockwise
 {
-    [self.cropView rotateImageNinetyDegreesAnimated:YES clockwise:NO];
-    [self setAspectRatioPreset:self.aspectRatioPreset animated:YES];
+    TOCropViewControllerAspectRatioPreset ratio = TOCropViewControllerAspectRatioUndefined;
+    switch (self.aspectRatioPreset) {
+        case TOCropViewControllerAspectRatioPreset3x1:
+            ratio = TOCropViewControllerAspectRatioPreset1x3;
+            break;
+        case TOCropViewControllerAspectRatioPreset4x1:
+            ratio = TOCropViewControllerAspectRatioPreset1x4;
+            break;
+        case TOCropViewControllerAspectRatioPreset5x1:
+            ratio = TOCropViewControllerAspectRatioPreset1x5;
+            break;
+        case TOCropViewControllerAspectRatioPreset1x3:
+            ratio = TOCropViewControllerAspectRatioPreset3x1;
+            break;
+        case TOCropViewControllerAspectRatioPreset1x4:
+            ratio = TOCropViewControllerAspectRatioPreset4x1;
+            break;
+        case TOCropViewControllerAspectRatioPreset1x5:
+            ratio = TOCropViewControllerAspectRatioPreset5x1;
+            break;
+    }
+    
+    // [self.cropView rotateImageNinetyDegreesAnimated:YES clockwise:YES];
+    [self setAspectRatioPreset:ratio animated:NO];
+    [self resetCropViewLayout];
+    //[self.cropView setAspectRatio:CGSizeZero animated:YES];
 }
 
 #pragma mark - Crop View Delegates -
