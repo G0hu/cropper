@@ -393,7 +393,7 @@
     }
     
     [self.cropView resetLayoutToDefaultAnimated:animated];
-    [self setAspectRatioPreset:self.aspectRatioPreset animated:NO];
+    [self setAspectRatioPreset:self.aspectRatioPreset animated:YES];
 }
 
 #pragma mark - Aspect Ratio Handling -
