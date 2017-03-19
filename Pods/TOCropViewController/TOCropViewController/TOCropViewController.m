@@ -392,8 +392,6 @@
         self.aspectRatioLockEnabled = YES;
     }
     
-    self.isVertical = NO;
-    //[self setAspectRatioPreset:self.aspectRatioPreset animated:NO];
     [self.cropView resetLayoutToDefaultAnimated:animated];
     [self setAspectRatioPreset:self.aspectRatioPreset animated:NO];
 }
@@ -493,6 +491,26 @@
 
 - (void)setAspectRatioPreset:(TOCropViewControllerAspectRatioPreset)aspectRatioPreset animated:(BOOL)animated
 {
+    if (self.isVertical)
+    {
+        switch (aspectRatioPreset) {
+            case TOCropViewControllerAspectRatioPreset3x1:
+                printf("reverse 3");
+                aspectRatioPreset = TOCropViewControllerAspectRatioPreset1x3;
+                break;
+            case TOCropViewControllerAspectRatioPreset4x1:
+                printf("reverse 4");
+                aspectRatioPreset = TOCropViewControllerAspectRatioPreset1x4;
+                break;
+            case TOCropViewControllerAspectRatioPreset5x1:
+                printf("reverse 5");
+                aspectRatioPreset = TOCropViewControllerAspectRatioPreset1x5;
+                break;
+            default:
+                break;
+        }
+    }
+    
     CGSize aspectRatio = CGSizeZero;
     _aspectRatioPreset = aspectRatioPreset;
     
@@ -554,10 +572,9 @@
             break;
     }
     
-    // [self.cropView rotateImageNinetyDegreesAnimated:YES clockwise:YES];
+    self.isVertical = !self.isVertical;
     [self setAspectRatioPreset:ratio animated:NO];
     [self resetCropViewLayout];
-    //[self.cropView setAspectRatio:CGSizeZero animated:YES];
 }
 
 - (void)rotateCropViewCounterclockwise
@@ -584,10 +601,9 @@
             break;
     }
     
-    // [self.cropView rotateImageNinetyDegreesAnimated:YES clockwise:YES];
+    self.isVertical = !self.isVertical;
     [self setAspectRatioPreset:ratio animated:NO];
     [self resetCropViewLayout];
-    //[self.cropView setAspectRatio:CGSizeZero animated:YES];
 }
 
 #pragma mark - Crop View Delegates -
