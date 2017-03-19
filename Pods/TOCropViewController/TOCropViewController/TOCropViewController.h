@@ -26,9 +26,11 @@
 #import "TOCropToolbar.h"
 
 typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatioPreset) {
+    TOCropViewControllerAspectRatioPreset2x1,
     TOCropViewControllerAspectRatioPreset3x1,
     TOCropViewControllerAspectRatioPreset4x1,
     TOCropViewControllerAspectRatioPreset5x1,
+    TOCropViewControllerAspectRatioPreset1x2,
     TOCropViewControllerAspectRatioPreset1x3,
     TOCropViewControllerAspectRatioPreset1x4,
     TOCropViewControllerAspectRatioPreset1x5,

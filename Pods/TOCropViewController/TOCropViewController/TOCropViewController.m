@@ -428,10 +428,10 @@
     //[items addObject:originalButtonTitle];
     //[items addObject:squareButtonTitle];
     if (verticalCropBox) {
-        [items addObjectsFromArray:@[@"3 pieces", @"4 pieces", @"5 pieces"]];
+        [items addObjectsFromArray:@[@"2 pieces", @"3 pieces", @"4 pieces", @"5 pieces"]];
     }
     else {
-        [items addObjectsFromArray:@[@"3 pieces", @"4 pieces", @"5 pieces"]];
+        [items addObjectsFromArray:@[@"2 pieces", @"3 pieces", @"4 pieces", @"5 pieces"]];
     }
     
     //Present via a UIAlertController if >= iOS 8
@@ -494,16 +494,16 @@
     if (self.isVertical)
     {
         switch (aspectRatioPreset) {
+            case TOCropViewControllerAspectRatioPreset2x1:
+                aspectRatioPreset = TOCropViewControllerAspectRatioPreset1x2;
+                break;
             case TOCropViewControllerAspectRatioPreset3x1:
-                printf("reverse 3");
                 aspectRatioPreset = TOCropViewControllerAspectRatioPreset1x3;
                 break;
             case TOCropViewControllerAspectRatioPreset4x1:
-                printf("reverse 4");
                 aspectRatioPreset = TOCropViewControllerAspectRatioPreset1x4;
                 break;
             case TOCropViewControllerAspectRatioPreset5x1:
-                printf("reverse 5");
                 aspectRatioPreset = TOCropViewControllerAspectRatioPreset1x5;
                 break;
             default:
@@ -515,6 +515,9 @@
     _aspectRatioPreset = aspectRatioPreset;
     
     switch (aspectRatioPreset) {
+        case TOCropViewControllerAspectRatioPreset2x1:
+            aspectRatio = CGSizeMake(2.0f, 1.0f);
+            break;
         case TOCropViewControllerAspectRatioPreset3x1:
             aspectRatio = CGSizeMake(3.0f, 1.0f);
             break;
@@ -523,6 +526,9 @@
             break;
         case TOCropViewControllerAspectRatioPreset5x1:
             aspectRatio = CGSizeMake(5.0f, 1.0f);
+            break;
+        case TOCropViewControllerAspectRatioPreset1x2:
+            aspectRatio = CGSizeMake(1.0f, 2.0f);
             break;
         case TOCropViewControllerAspectRatioPreset1x3:
             aspectRatio = CGSizeMake(1.0f, 3.0f);
@@ -552,6 +558,9 @@
 {
     TOCropViewControllerAspectRatioPreset ratio = TOCropViewControllerAspectRatioUndefined;
     switch (self.aspectRatioPreset) {
+        case TOCropViewControllerAspectRatioPreset2x1:
+            ratio = TOCropViewControllerAspectRatioPreset1x2;
+            break;
         case TOCropViewControllerAspectRatioPreset3x1:
             ratio = TOCropViewControllerAspectRatioPreset1x3;
             break;
@@ -560,6 +569,9 @@
             break;
         case TOCropViewControllerAspectRatioPreset5x1:
             ratio = TOCropViewControllerAspectRatioPreset1x5;
+            break;
+        case TOCropViewControllerAspectRatioPreset1x2:
+            ratio = TOCropViewControllerAspectRatioPreset2x1;
             break;
         case TOCropViewControllerAspectRatioPreset1x3:
             ratio = TOCropViewControllerAspectRatioPreset3x1;
@@ -581,6 +593,9 @@
 {
     TOCropViewControllerAspectRatioPreset ratio = TOCropViewControllerAspectRatioUndefined;
     switch (self.aspectRatioPreset) {
+        case TOCropViewControllerAspectRatioPreset2x1:
+            ratio = TOCropViewControllerAspectRatioPreset1x2;
+            break;
         case TOCropViewControllerAspectRatioPreset3x1:
             ratio = TOCropViewControllerAspectRatioPreset1x3;
             break;
@@ -589,6 +604,9 @@
             break;
         case TOCropViewControllerAspectRatioPreset5x1:
             ratio = TOCropViewControllerAspectRatioPreset1x5;
+            break;
+        case TOCropViewControllerAspectRatioPreset1x2:
+            ratio = TOCropViewControllerAspectRatioPreset2x1;
             break;
         case TOCropViewControllerAspectRatioPreset1x3:
             ratio = TOCropViewControllerAspectRatioPreset3x1;
