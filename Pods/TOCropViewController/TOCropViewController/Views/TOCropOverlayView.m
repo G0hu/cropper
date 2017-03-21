@@ -194,11 +194,32 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
         [lineView removeFromSuperview];
     }];
     
+    NSArray *lines;
+    printf("horizontal %f %f\n", self.ratio.width, self.ratio.height);
+    switch ((NSInteger) self.ratio.height) {
+        case 2:
+            lines = @[[self createNewLineView]];
+            break;
+        case 3:
+            lines = @[[self createNewLineView], [self createNewLineView]];
+            break;
+        case 4:
+            lines = @[[self createNewLineView], [self createNewLineView], [self createNewLineView]];
+            break;
+        case 5:
+            lines = @[[self createNewLineView], [self createNewLineView], [self createNewLineView], [self createNewLineView]];
+            break;
+        default:
+            lines = @[];
+            break;
+    }
+    
     if (_displayHorizontalGridLines) {
-        self.horizontalGridLines = @[[self createNewLineView], [self createNewLineView]];
+        self.horizontalGridLines = lines;
     } else {
         self.horizontalGridLines = @[];
     }
+    
     [self setNeedsDisplay];
 }
 
@@ -209,17 +230,46 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
         [lineView removeFromSuperview];
     }];
     
+    NSArray *lines;
+    switch ((NSInteger) self.ratio.width) {
+        case 2:
+            lines = @[[self createNewLineView]];
+            break;
+        case 3:
+            lines = @[[self createNewLineView], [self createNewLineView]];
+            break;
+        case 4:
+            lines = @[[self createNewLineView], [self createNewLineView], [self createNewLineView]];
+            break;
+        case 5:
+            lines = @[[self createNewLineView], [self createNewLineView], [self createNewLineView], [self createNewLineView]];
+            break;
+        default:
+            lines = @[];
+            break;
+    }
+    
     if (_displayVerticalGridLines) {
-        self.verticalGridLines = @[[self createNewLineView], [self createNewLineView]];
+        self.verticalGridLines = lines;
     } else {
         self.verticalGridLines = @[];
     }
+    
     [self setNeedsDisplay];
 }
 
 - (void)setGridHidden:(BOOL)gridHidden
 {
     [self setGridHidden:gridHidden animated:NO];
+}
+
+- (void)setRatio:(CGSize)ratio
+{
+    _ratio = ratio;
+    printf("set ratio %f %f", ratio.width, ratio.height);
+    [self setDisplayVerticalGridLines:_displayVerticalGridLines];
+    [self setDisplayHorizontalGridLines:_displayHorizontalGridLines];
+    
 }
 
 #pragma mark - Private methods

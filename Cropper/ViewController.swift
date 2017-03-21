@@ -13,17 +13,20 @@ import ALCameraViewController
 
 class ViewController: UIViewController, TOCropViewControllerDelegate {
 
-    var b: UIButton?
+    var b: UIButton = {
+        let b = UIButton()
+        b.backgroundColor = UIColor.clear
+        b.addTarget(self, action: #selector(showCameraRoll), for: .touchUpInside)
+        return b
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        b = UIButton(frame: self.view.frame)
-        b?.backgroundColor = UIColor.clear
-        b?.addTarget(self, action: #selector(showCameraRoll), for: .touchUpInside)
-        
-        view.addSubview(b!)
+        b.frame = self.view.frame
         view.backgroundColor = UIColor.white
+        
+        view.addSubview(b)
     }
 
     override func didReceiveMemoryWarning() {

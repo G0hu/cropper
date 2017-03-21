@@ -1338,6 +1338,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     CGRect cropBoxFrame = self.cropBoxFrame;
     CGPoint offset = self.scrollView.contentOffset;
     
+    [self.gridOverlayView setRatio:aspectRatio];
+    
     BOOL cropBoxIsPortrait = NO;
     if ((NSInteger)aspectRatio.width == 1 && (NSInteger)aspectRatio.height == 1)
         cropBoxIsPortrait = self.image.size.width > self.image.size.height;

@@ -33,6 +33,9 @@
 /** Add/Remove the interior vertical grid lines. */
 @property (nonatomic, assign) BOOL displayVerticalGridLines;
 
+/** Sets the aspect ratio for the overlay lines. */
+@property (nonatomic, assign) CGSize ratio;
+
 /** Shows and hides the interior grid lines with an optional crossfade animation. */
 - (void)setGridHidden:(BOOL)hidden animated:(BOOL)animated;
 
