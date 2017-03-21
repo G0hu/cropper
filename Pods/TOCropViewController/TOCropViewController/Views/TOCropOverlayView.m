@@ -135,7 +135,7 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
     }
     
     //grid lines - horizontal
-    CGFloat thickness = 1.0f / [[UIScreen mainScreen] scale];
+    CGFloat thickness = 2.0f / [[UIScreen mainScreen] scale];
     NSInteger numberOfLines = self.horizontalGridLines.count;
     CGFloat padding = (CGRectGetHeight(self.bounds) - (thickness*numberOfLines)) / (numberOfLines + 1);
     for (NSInteger i = 0; i < numberOfLines; i++) {
@@ -195,7 +195,6 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
     }];
     
     NSArray *lines;
-    printf("horizontal %f %f\n", self.ratio.width, self.ratio.height);
     switch ((NSInteger) self.ratio.height) {
         case 2:
             lines = @[[self createNewLineView]];
@@ -266,7 +265,6 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
 - (void)setRatio:(CGSize)ratio
 {
     _ratio = ratio;
-    printf("set ratio %f %f", ratio.width, ratio.height);
     [self setDisplayVerticalGridLines:_displayVerticalGridLines];
     [self setDisplayHorizontalGridLines:_displayHorizontalGridLines];
     
