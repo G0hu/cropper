@@ -12,7 +12,6 @@
 		9A2989661E6EFA7300DBDA63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2989651E6EFA7300DBDA63 /* Assets.xcassets */; };
 		9AE58F3C1E6F2C65000D9B15 /* EasyImagy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE58F331E6F2C5B000D9B15 /* EasyImagy.framework */; };
 		9AE58F3D1E6F2C65000D9B15 /* EasyImagy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE58F331E6F2C5B000D9B15 /* EasyImagy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9AE789D81E6F01C600DF0E5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AE789D71E6F01C600DF0E5F /* LaunchScreen.storyboard */; };
 		A11341E8F5966FBB88A24F88 /* Pods_Cropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F153DAD3AB98F104B50B1B /* Pods_Cropper.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +82,6 @@
 		9A2989651E6EFA7300DBDA63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A29896A1E6EFA7300DBDA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AE58F2A1E6F2C5B000D9B15 /* EasyImagy.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EasyImagy.xcodeproj; path = EasyImagy/EasyImagy.xcodeproj; sourceTree = "<group>"; };
-		9AE789D71E6F01C600DF0E5F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3F153DAD3AB98F104B50B1B /* Pods_Cropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE0C5DC4F22D5B943B6184 /* Pods-Cropper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cropper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cropper/Pods-Cropper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,7 +123,6 @@
 				9AE58F2A1E6F2C5B000D9B15 /* EasyImagy.xcodeproj */,
 				9A29895E1E6EFA7300DBDA63 /* AppDelegate.swift */,
 				9A2989601E6EFA7300DBDA63 /* ViewController.swift */,
-				9AE789D71E6F01C600DF0E5F /* LaunchScreen.storyboard */,
 				9A2989651E6EFA7300DBDA63 /* Assets.xcassets */,
 				9A29896A1E6EFA7300DBDA63 /* Info.plist */,
 			);
@@ -271,7 +268,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2989661E6EFA7300DBDA63 /* Assets.xcassets in Resources */,
-				9AE789D81E6F01C600DF0E5F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
