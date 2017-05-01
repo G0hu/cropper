@@ -541,6 +541,8 @@
         case TOCropViewControllerAspectRatioPreset1x5:
             aspectRatio = CGSizeMake(1.0f, 5.0f);
             break;
+        default:
+            break;
     }
     
     // If the image is a portrait shape, flip the aspect ratio to match
@@ -585,6 +587,8 @@
         case TOCropViewControllerAspectRatioPreset1x5:
             ratio = TOCropViewControllerAspectRatioPreset5x1;
             break;
+        default:
+            break;
     }
     
     self.isVertical = !self.isVertical;
@@ -619,6 +623,8 @@
             break;
         case TOCropViewControllerAspectRatioPreset1x5:
             ratio = TOCropViewControllerAspectRatioPreset5x1;
+            break;
+        default:
             break;
     }
     
