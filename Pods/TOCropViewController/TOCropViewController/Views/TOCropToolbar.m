@@ -316,6 +316,36 @@
     }
 }
 
+- (void)setClampRatio:(CGSize)ratio
+{
+    UIImage *img = NULL;
+    NSInteger pieces = ratio.width == 1 ? ratio.height : ratio.width;
+    switch (pieces) {
+        case 2:
+            img = [UIImage imageNamed:@"2"];
+            break;
+            
+        case 3:
+            img = [UIImage imageNamed:@"3"];
+            break;
+            
+        case 4:
+            img = [UIImage imageNamed:@"4"];
+            break;
+            
+        case 5:
+            img = [UIImage imageNamed:@"5"];
+            break;
+        
+        default:
+            img = [TOCropToolbar clampImage];
+            break;
+    }
+    
+    printf("clamp ratio image called!!\n");
+    [_clampButton setImage:img forState:UIControlStateNormal];
+}
+
 - (CGRect)clampButtonFrame
 {
     return self.clampButton.frame;

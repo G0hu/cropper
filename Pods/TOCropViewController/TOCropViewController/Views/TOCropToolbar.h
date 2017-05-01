@@ -54,6 +54,7 @@
 @property (nullable, nonatomic, copy) void (^resetButtonTapped)(void);
 
 /* State management for the 'clamp' button */
+- (void)setClampRatio:(CGSize)ratio;
 @property (nonatomic, assign) BOOL clampButtonGlowing;
 @property (nonatomic, readonly) CGRect clampButtonFrame;
 

@@ -112,7 +112,7 @@ public class CameraViewController: UIViewController {
     let closeButton : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "closeButton",
+        button.setImage(UIImage(named: "swapButton",
                                 in: CameraGlobals.shared.bundle,
                                 compatibleWith: nil),
                         for: .normal)
@@ -121,6 +121,7 @@ public class CameraViewController: UIViewController {
     
     let swapButton : UIButton = {
         let button = UIButton()
+        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "swapButton",
                                 in: CameraGlobals.shared.bundle,
@@ -352,9 +353,9 @@ public class CameraViewController: UIViewController {
      */
     private func setupActions() {
         cameraButton.action = { [weak self] in self?.capturePhoto() }
-        swapButton.action = { [weak self] in self?.swapCamera() }
+        // swapButton.action = { [weak self] in self?.swapCamera() }
         libraryButton.action = { [weak self] in self?.showLibrary() }
-        closeButton.action = { [weak self] in self?.close() }
+        closeButton.action = { [weak self] in self?.swapCamera() }
         flashButton.action = { [weak self] in self?.toggleFlash() }
     }
     

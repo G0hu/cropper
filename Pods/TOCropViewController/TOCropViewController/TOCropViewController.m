@@ -554,6 +554,7 @@
     }
     
     [self.cropView setAspectRatio:aspectRatio animated:animated];
+    [self.toolbar setClampRatio:aspectRatio];
 }
 
 - (void)rotateCropViewClockwise

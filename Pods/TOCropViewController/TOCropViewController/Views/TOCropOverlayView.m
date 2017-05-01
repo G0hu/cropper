@@ -75,7 +75,11 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
     [super setFrame:frame];
     
     if (_outerLineViews)
+    {
+        [self setGridHidden:YES animated:NO];
         [self layoutLines];
+        [self setGridHidden:NO animated:NO];
+    }
 }
 
 - (void)didMoveToSuperview
@@ -89,7 +93,7 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
 - (void)layoutLines
 {
     CGSize boundsSize = self.bounds.size;
-    
+
     //border lines
     for (NSInteger i = 0; i < 4; i++) {
         UIView *lineView = self.outerLineViews[i];

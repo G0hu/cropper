@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Cropper.xcodeproj">
+      location = "group:/Users/hugo/Desktop/TEMP/Swift/cropper/Cropper.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

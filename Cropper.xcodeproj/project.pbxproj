@@ -77,7 +77,7 @@
 
 /* Begin PBXFileReference section */
 		1B5A5C6C17242F551712A53B /* Pods-Cropper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cropper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cropper/Pods-Cropper.debug.xcconfig"; sourceTree = "<group>"; };
-		9A29895B1E6EFA7300DBDA63 /* Cropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cropper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A29895B1E6EFA7300DBDA63 /* unsqrd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = unsqrd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A29895E1E6EFA7300DBDA63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A2989601E6EFA7300DBDA63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A2989651E6EFA7300DBDA63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 		9A29895C1E6EFA7300DBDA63 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A29895B1E6EFA7300DBDA63 /* Cropper.app */,
+				9A29895B1E6EFA7300DBDA63 /* unsqrd.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,7 +183,7 @@
 			);
 			name = Cropper;
 			productName = Cropper;
-			productReference = 9A29895B1E6EFA7300DBDA63 /* Cropper.app */;
+			productReference = 9A29895B1E6EFA7300DBDA63 /* unsqrd.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -448,7 +448,7 @@
 				INFOPLIST_FILE = Cropper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ege-hugo.Cropper1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = unsqrd;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -464,7 +464,7 @@
 				INFOPLIST_FILE = Cropper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ege-hugo.Cropper1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = unsqrd;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
