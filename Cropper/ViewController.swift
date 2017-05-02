@@ -85,6 +85,11 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
+        is_editing = false
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             // we got back an error!
