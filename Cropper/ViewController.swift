@@ -21,12 +21,18 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
         view.backgroundColor = UIColor.white
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if (!is_editing) {
             view.backgroundColor = UIColor.white
-            showCameraRoll()
+//            showCameraRoll()
         } else {
             view.backgroundColor = UIColor.black
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (!is_editing) {
+            showCameraRoll()
         }
     }
 
