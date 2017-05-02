@@ -14,18 +14,22 @@ import ALCameraViewController
 
 class ViewController: UIViewController, TOCropViewControllerDelegate {
 
+    let imageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "1-2 kopya"))
     var is_editing: Bool = false
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        imageView.frame = view.frame
+        view.addSubview(imageView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if (!is_editing) {
-            view.backgroundColor = UIColor.white
-//            showCameraRoll()
+            imageView.isHidden = false
         } else {
+            imageView.isHidden = true
             view.backgroundColor = UIColor.black
         }
     }
