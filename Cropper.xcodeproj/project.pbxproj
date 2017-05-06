@@ -10,6 +10,7 @@
 		9A29895F1E6EFA7300DBDA63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A29895E1E6EFA7300DBDA63 /* AppDelegate.swift */; };
 		9A2989611E6EFA7300DBDA63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2989601E6EFA7300DBDA63 /* ViewController.swift */; };
 		9A2989661E6EFA7300DBDA63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2989651E6EFA7300DBDA63 /* Assets.xcassets */; };
+		9A3D47621EBDC3C800214315 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D47611EBDC3C800214315 /* EndViewController.swift */; };
 		9AB083F31EB8EE4F0061BF36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AB083F21EB8EE4F0061BF36 /* LaunchScreen.storyboard */; };
 		A11341E8F5966FBB88A24F88 /* Pods_Cropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F153DAD3AB98F104B50B1B /* Pods_Cropper.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		9A2989601E6EFA7300DBDA63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A2989651E6EFA7300DBDA63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A29896A1E6EFA7300DBDA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A3D47611EBDC3C800214315 /* EndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		9AB083F21EB8EE4F0061BF36 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3F153DAD3AB98F104B50B1B /* Pods_Cropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE0C5DC4F22D5B943B6184 /* Pods-Cropper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cropper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cropper/Pods-Cropper.release.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				9A29895E1E6EFA7300DBDA63 /* AppDelegate.swift */,
 				9A2989601E6EFA7300DBDA63 /* ViewController.swift */,
+				9A3D47611EBDC3C800214315 /* EndViewController.swift */,
 				9A2989651E6EFA7300DBDA63 /* Assets.xcassets */,
 				9AB083F21EB8EE4F0061BF36 /* LaunchScreen.storyboard */,
 				9A29896A1E6EFA7300DBDA63 /* Info.plist */,
@@ -222,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3D47621EBDC3C800214315 /* EndViewController.swift in Sources */,
 				9A2989611E6EFA7300DBDA63 /* ViewController.swift in Sources */,
 				9A29895F1E6EFA7300DBDA63 /* AppDelegate.swift in Sources */,
 			);

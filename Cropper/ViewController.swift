@@ -14,21 +14,20 @@ import ALCameraViewController
 
 class ViewController: UIViewController, TOCropViewControllerDelegate {
 
+    let endViewController: EndViewController = EndViewController()
     let imageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "1-2 kopya"))
     var is_editing: Bool = false
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setNeedsStatusBarAppearanceUpdate()
+        
         imageView.frame = view.frame
         view.addSubview(imageView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if (!is_editing) {
-            imageView.isHidden = false
-        } else {
+        if (is_editing) {
             imageView.isHidden = true
             view.backgroundColor = UIColor.black
         }
@@ -38,11 +37,6 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
         if (!is_editing) {
             showCameraRoll()
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc private func showCameraRoll() {
@@ -55,7 +49,7 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
             }
         }
         
-        present(cameraViewController, animated: true, completion: nil)
+        present(cameraViewController, animated: false, completion: nil)
     }
     
     private func presentCropViewController(image: UIImage) {
@@ -66,33 +60,26 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
         self.present(cropViewController, animated: true, completion: nil)
     }
     
-    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle: Int) {
-        is_editing = false
+    func cropViewController(_ cropViewController: TOCropViewController,
+                            didCropToImage image: UIImage, rect cropRect: CGRect, angle: Int) {
         let horizontal = (cropRect.width / cropRect.height) > 1 ? true : false
         let pieces: CGFloat = round(horizontal ? (cropRect.width / cropRect.height) : (cropRect.height / cropRect.width))
-        print("Scale: %d", image.scale)
         
-        if (horizontal) {
-            for i in 1...Int(pieces) {
-                
-                guard let cgImage = image.cgImage?.copy()
-                else { return }
-                
-                let cpy: UIImage = UIImage(cgImage: cgImage,
-                                       scale: image.scale,
-                                       orientation: image.imageOrientation)
-                
-                let x: CGFloat = CGFloat(i - 1) * (image.size.width / pieces)
-                let rect = CGRect(x: x, y: 0, width: image.size.width / pieces, height: image.size.height)
-                let slice: UIImage = cpy.croppedImage(withFrame: rect, angle: angle, circularClip: false)
-                
-                UIImageWriteToSavedPhotosAlbum(slice, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
-            }
-        } else {
-            
+        for i in 1...Int(pieces) {
+            let (x, y) = horizontal ? (CGFloat(i - 1) * (image.size.width / pieces), 0) :
+                (0 , CGFloat(i - 1) * (image.size.height / pieces))
+            let (w, h) = horizontal ? (image.size.width / pieces, image.size.height) :
+                (image.size.width, image.size.height / pieces)
+
+            let rect = CGRect(x: x, y: y, width: w, height: h)
+            let slice: UIImage = image.croppedImage(withFrame: rect, angle: angle, circularClip: false)
+            UIImageWriteToSavedPhotosAlbum(slice, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
         }
         
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            self.present(self.endViewController, animated: true, completion: nil)
+            self.is_editing = false
+        })
     }
     
     func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
@@ -100,9 +87,8 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    func saveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
-            // we got back an error!
             print(error.localizedDescription)
         } else {
             print("Your altered image has been saved to your photos.")
