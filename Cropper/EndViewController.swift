@@ -41,9 +41,9 @@ class ResizableButton: UIButton {
 
 class EndViewController: UIViewController {
     
-    let startColor = UIColor(red: 91/255, green: 134/255, blue: 229/255, alpha: 1).cgColor
+    let startColor = UIColor(red: 54/255, green: 209/255, blue: 220/255, alpha: 1).cgColor
     
-    let endColor = UIColor(red: 54/255, green: 209/255, blue: 220/255, alpha: 1).cgColor
+    let endColor = UIColor(red: 91/255, green: 134/255, blue: 229/255, alpha: 1).cgColor
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

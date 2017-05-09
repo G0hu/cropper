@@ -22,14 +22,6 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
         super.viewDidLoad()
         self.setNeedsStatusBarAppearanceUpdate()
         
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        if launchedBefore {
-            print("Not first launch.")
-        } else {
-            print("First launch, setting UserDefault.")
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
-        }
-        
         imageView.frame = view.frame
         view.addSubview(imageView)
     }
@@ -42,7 +34,14 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if (!is_editing) {
+        UserDefaults.standard.removeObject(forKey: "first_launch")
+        let launchedBefore = UserDefaults.standard.bool(forKey: "first_launch")
+        if !launchedBefore {
+            print("First launch, setting UserDefault.")
+            UserDefaults.standard.set(true, forKey: "first_launch")
+            
+            self.present(generateWalkThrough(rect: view.frame), animated: false, completion: nil)
+        } else if (!is_editing) {
             showCameraRoll()
         }
     }
