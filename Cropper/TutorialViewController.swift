@@ -30,16 +30,14 @@ func generateWalkThrough(rect: CGRect) -> OnboardingViewController {
     let page3 = CustomOBContentViewController(body: "Adjust the cropping\nwindow... And you're done",
                                               image: #imageLiteral(resourceName: "icon-p3"), background: images[2])
     
-    page1.topPadding = 135
     page1.icon_frame = CGSize(width: 120, height: 91)
-    page2.topPadding = 135
     page2.icon_frame = CGSize(width: 215, height: 75)
-    page3.topPadding = 135
     page3.icon_frame = CGSize(width: 110, height: 110)
     
     let obvc = CustomOBViewController(backgroundImage: UIImage(), contents: [page1, page2, page3])
     obvc?.shouldMaskBackground = false
     obvc?.allowSkipping = true
+    obvc?.skipHandler = { obvc?.selfDismiss() }
     return obvc!
 }
 
@@ -70,6 +68,10 @@ class CustomOBViewController: OnboardingViewController {
         gradient.frame = self.view.bounds
         gradient.colors = [startColor, endColor]
         self.view.layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func selfDismiss() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -112,8 +114,7 @@ class CustomOBContentViewController: OnboardingContentViewController {
     
     init(body: String?, image: UIImage?, background: UIImage?) {
         super.init(title: "", body: body, image: image, buttonText: "", action: nil)
-        backgrnd = UIImageView(image: background)
-        print(background?.size, backgrnd?.frame)
+        backgrnd = UIImageView(image: background!)
         
         backgrnd?.alpha = 0.25
     }
@@ -132,12 +133,17 @@ class CustomOBContentViewController: OnboardingContentViewController {
         bodyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150).isActive = true
         
         view.insertSubview(backgrnd!, at: 0)
-        print(backgrnd?.frame)
         backgrnd?.translatesAutoresizingMaskIntoConstraints = false
         backgrnd?.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         backgrnd?.widthAnchor.constraint(equalToConstant: ((backgrnd?.image?.size.width)! * (backgrnd?.image?.scale)!))
             .isActive = true
         backgrnd?.heightAnchor.constraint(equalToConstant: ((backgrnd?.image?.size.height)! * (backgrnd?.image?.scale)!))
             .isActive = true
+        
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        iconImageView.widthAnchor.constraint(equalToConstant: iconWidth).isActive = true
+        iconImageView.heightAnchor.constraint(equalToConstant: iconHeight).isActive = true
+        iconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        iconImageView.bottomAnchor.constraint(equalTo: (backgrnd?.topAnchor)!, constant: -55).isActive = true
     }
 }

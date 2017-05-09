@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         if window?.rootViewController?.presentedViewController is EndViewController {
             return .portrait
+        } else if window?.rootViewController?.presentedViewController is CustomOBViewController {
+            return .portrait
         } else {
             return .all
         }

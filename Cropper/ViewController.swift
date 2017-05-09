@@ -16,6 +16,7 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
 
     let endViewController: EndViewController = EndViewController()
     let imageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "1-2 kopya"))
+    var forceWalkthrough: Bool = false
     var is_editing: Bool = false
     
     override func viewDidLoad() {
@@ -34,9 +35,9 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        UserDefaults.standard.removeObject(forKey: "first_launch")
         let launchedBefore = UserDefaults.standard.bool(forKey: "first_launch")
-        if !launchedBefore {
+        if !launchedBefore || forceWalkthrough {
+            forceWalkthrough = false
             print("First launch, setting UserDefault.")
             UserDefaults.standard.set(true, forKey: "first_launch")
             
@@ -56,7 +57,7 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
             }
         }
         
-        present(cameraViewController, animated: false, completion: nil)
+        present(cameraViewController, animated: true, completion: nil)
     }
     
     private func presentCropViewController(image: UIImage) {
