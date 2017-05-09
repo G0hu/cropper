@@ -22,6 +22,14 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
         super.viewDidLoad()
         self.setNeedsStatusBarAppearanceUpdate()
         
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore {
+            print("Not first launch.")
+        } else {
+            print("First launch, setting UserDefault.")
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+        }
+        
         imageView.frame = view.frame
         view.addSubview(imageView)
     }

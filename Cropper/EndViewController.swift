@@ -9,7 +9,26 @@
 import UIKit
 import Foundation
 
+extension String {
+    
+    var html2AttributedString: NSAttributedString? {
+        guard let data = data(using: String.Encoding.utf8) else { return nil }
+        
+        do {
+            return try NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:String.Encoding.utf8], documentAttributes: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            return  nil
+        }
+    }
+    
+    var html2String: String {
+        return html2AttributedString?.string ?? ""
+    }
+}
+
 class ResizableButton: UIButton {
+
     override var intrinsicContentSize: CGSize {
         get {
             let labelSize = titleLabel?.sizeThatFits(CGSize(width: self.frame.size.width, height: CGFloat.greatestFiniteMagnitude)) ?? CGSize.zero
@@ -61,6 +80,23 @@ class EndViewController: UIViewController {
         return l
     }()
     
+    let bottomLabel: UILabel = {
+        let l: UILabel = UILabel()
+        let text = "<span style='color:#C8C8C8'>Share your pictures on Instagram with the<br />hashtag </span>" +
+            "<span style='color:white'>#unsqrd</span>" +
+            "<span style='color:#C8C8C8'> to help us grow</span>"
+        
+        l.attributedText = try! NSAttributedString(
+            data: text.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            documentAttributes: nil)
+
+        l.font = UIFont.boldSystemFont(ofSize: 16)
+        l.textAlignment = .center
+        l.numberOfLines = 2
+        return l
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNeedsStatusBarAppearanceUpdate()
@@ -74,6 +110,7 @@ class EndViewController: UIViewController {
         
         self.view.addSubview(icon)
         self.view.addSubview(button)
+        self.view.addSubview(bottomLabel)
         self.view.addSubview(imgSavedLabel)
         self.view.layer.insertSublayer(gradient, at: 0)
         
@@ -85,12 +122,16 @@ class EndViewController: UIViewController {
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -150).isActive = true
+        button.bottomAnchor.constraint(equalTo: bottomLabel.topAnchor, constant: -35).isActive = true
         
         imgSavedLabel.translatesAutoresizingMaskIntoConstraints = false
         imgSavedLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        imgSavedLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -30).isActive = true
+        imgSavedLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -70).isActive = true
         imgSavedLabel.widthAnchor.constraint(equalToConstant: self.view.frame.width - 60).isActive = true
+        
+        bottomLabel.translatesAutoresizingMaskIntoConstraints = false
+        bottomLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        bottomLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
     }
     
     func onTouchButton() {
