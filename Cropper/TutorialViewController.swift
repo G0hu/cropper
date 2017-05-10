@@ -15,7 +15,6 @@ func generateWalkThrough(rect: CGRect) -> OnboardingViewController {
     var images: Array<UIImage> = []
     let background: UIImage = #imageLiteral(resourceName: "trees")
     let newBackground = resizeImage(source: background, width: rect.width * 3)
-
     
     for i in 0...2 {
         let r = CGRect(x: rect.width * CGFloat(i), y: 0.0, width: rect.width, height: newBackground.size.height)
@@ -41,7 +40,7 @@ func generateWalkThrough(rect: CGRect) -> OnboardingViewController {
     return obvc!
 }
 
-func resizeImage(source: UIImage, width: CGFloat) -> UIImage {
+fileprivate func resizeImage(source: UIImage, width: CGFloat) -> UIImage {
     let oldWidth: CGFloat = source.size.width
     let scaleFactor: CGFloat = width / oldWidth
     let newHeight: CGFloat = source.size.height * scaleFactor

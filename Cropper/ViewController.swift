@@ -16,7 +16,7 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
 
     let endViewController: EndViewController = EndViewController()
     let imageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "1-2 kopya"))
-    var forceWalkthrough: Bool = false
+    var forceWalkthrough: Bool = true
     var is_editing: Bool = false
     
     override func viewDidLoad() {
@@ -81,7 +81,10 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
 
             let rect = CGRect(x: x, y: y, width: w, height: h)
             let slice: UIImage = image.croppedImage(withFrame: rect, angle: angle, circularClip: false)
-            UIImageWriteToSavedPhotosAlbum(slice, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+            
+            let rotated = horizontal ? slice : slice.rotated(by: Measurement(value: 270, unit: .degrees))
+            UIImageWriteToSavedPhotosAlbum(rotated!, self,
+                                           #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
         }
         
         self.dismiss(animated: true, completion: {
@@ -100,6 +103,37 @@ class ViewController: UIViewController, TOCropViewControllerDelegate {
             print(error.localizedDescription)
         } else {
             print("Your altered image has been saved to your photos.")
+        }
+    }
+}
+
+extension UIImage {
+    struct RotationOptions: OptionSet {
+        let rawValue: Int
+        
+        static let flipOnVerticalAxis = RotationOptions(rawValue: 1)
+        static let flipOnHorizontalAxis = RotationOptions(rawValue: 2)
+    }
+    
+    func rotated(by rotationAngle: Measurement<UnitAngle>, options: RotationOptions = []) -> UIImage? {
+        guard let cgImage = self.cgImage else { return nil }
+        
+        let rotationInRadians = CGFloat(rotationAngle.converted(to: .radians).value)
+        let transform = CGAffineTransform(rotationAngle: rotationInRadians)
+        var rect = CGRect(origin: .zero, size: self.size).applying(transform)
+        rect.origin = .zero
+        
+        let renderer = UIGraphicsImageRenderer(size: rect.size)
+        return renderer.image { renderContext in
+            renderContext.cgContext.translateBy(x: rect.midX, y: rect.midY)
+            renderContext.cgContext.rotate(by: rotationInRadians)
+            
+            let x = options.contains(.flipOnVerticalAxis) ? -1.0 : 1.0
+            let y = options.contains(.flipOnHorizontalAxis) ? 1.0 : -1.0
+            renderContext.cgContext.scaleBy(x: CGFloat(x), y: CGFloat(y))
+            
+            let drawRect = CGRect(origin: CGPoint(x: -self.size.width/2, y: -self.size.height/2), size: self.size)
+            renderContext.cgContext.draw(cgImage, in: drawRect)
         }
     }
 }
