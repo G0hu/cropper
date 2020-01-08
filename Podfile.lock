@@ -1,0 +1,82 @@
+PODS:
+  - ALCameraViewController (1.3.1)
+  - Amplitude-iOS (4.0.4)
+  - Firebase/AdMob (4.0.1):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (= 7.20.0)
+  - Firebase/Core (4.0.1):
+    - FirebaseAnalytics (= 4.0.0)
+    - FirebaseCore (= 4.0.1)
+  - FirebaseAnalytics (4.0.0):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseCore (4.0.1):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseInstanceID (2.0.0):
+    - FirebaseCore (~> 4.0)
+  - Google-Mobile-Ads-SDK (7.20.0)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.1)":
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - Onboard (2.3.1)
+  - Realm (4.3.0):
+    - Realm/Headers (= 4.3.0)
+  - Realm/Headers (4.3.0)
+  - RealmSwift (4.3.0):
+    - Realm (= 4.3.0)
+  - SnapKit (5.0.1)
+  - SVProgressHUD (2.2.5)
+  - SwiftyStoreKit (0.15.0)
+  - TOCropViewController (2.0.12)
+
+DEPENDENCIES:
+  - ALCameraViewController
+  - Amplitude-iOS (~> 4.0.4)
+  - Firebase/AdMob
+  - Firebase/Core
+  - Onboard
+  - RealmSwift
+  - SnapKit (~> 5.0.0)
+  - SVProgressHUD
+  - SwiftyStoreKit
+  - TOCropViewController
+
+SPEC REPOS:
+  trunk:
+    - ALCameraViewController
+    - Amplitude-iOS
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - Google-Mobile-Ads-SDK
+    - GoogleToolboxForMac
+    - Onboard
+    - Realm
+    - RealmSwift
+    - SnapKit
+    - SVProgressHUD
+    - SwiftyStoreKit
+    - TOCropViewController
+
+SPEC CHECKSUMS:
+  ALCameraViewController: 29a34772007b98e23150bfe1772475a4a80a33ff
+  Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
+  Firebase: f984cd44a160be77ad0590f432e574562bfd4083
+  FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
+  FirebaseCore: 06172c5a0744ab3dd14f778fd666c22855e20098
+  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
+  Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  Realm: 9357c3589555793e1860a7104a7412bca4a48d99
+  RealmSwift: 402f1e379a8ef82c635313037b043f0f06de880c
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
+  TOCropViewController: e6e31b38d785a901e5651a1e7fff71bcda6c5214
+
+PODFILE CHECKSUM: 18bfad66433ec97abd74405479f2ae855675f6b9
+
+COCOAPODS: 1.8.4
