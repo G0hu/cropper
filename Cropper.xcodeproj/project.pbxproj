@@ -387,7 +387,7 @@
 				INFOPLIST_FILE = Cropper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "egehugo.unsqrd-test";
+				PRODUCT_BUNDLE_IDENTIFIER = egehugo.unsqrd;
 				PRODUCT_NAME = unsqrd;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -408,7 +408,7 @@
 				INFOPLIST_FILE = Cropper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "egehugo.unsqrd-test";
+				PRODUCT_BUNDLE_IDENTIFIER = egehugo.unsqrd;
 				PRODUCT_NAME = unsqrd;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
