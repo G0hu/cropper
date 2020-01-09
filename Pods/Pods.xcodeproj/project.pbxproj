@@ -438,6 +438,8 @@
 		F489AF2C3A4BAA41260095DAB13D5C17 /* RLMObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DD2DCBB518E2167AF8556E93F9B6A1F /* RLMObject.h */; };
 		F4E817F44A73CB188A81A97D3F504E76 /* SwiftyStoreKit+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C769509579E9F714E572B664173D1D65 /* SwiftyStoreKit+Types.swift */; };
 		F7538B7A068080BDDFB427EEAC7A1126 /* Onboard-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBF9AB413B22E5184A725D3C2B35CAE /* Onboard-dummy.m */; };
+		F78BE88D23C6EC31006E6B25 /* UIAlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78BE88C23C6EC31006E6B25 /* UIAlbumsView.swift */; };
+		F78BE88F23C6EDB5006E6B25 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78BE88E23C6EDB5006E6B25 /* AlbumCell.swift */; };
 		F8116420B37CA79D3BFACFFA8B4E4A15 /* RLMSyncConfiguration.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 4E38CB3AE67ACE41465767FA079112BA /* RLMSyncConfiguration.h */; };
 		F8B2ED19A8D7F58ADB3E699C01A70D36 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D9746F9E86281806E22A6D3332436D /* UIButtonExtensions.swift */; };
 		F92BD30DFB4218BCD136C73A3EE04927 /* RLMRealm_Dynamic.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 894A97DBBDF4FB27A7FC8E1119C27F9B /* RLMRealm_Dynamic.h */; };
@@ -1084,6 +1086,8 @@
 		F62E37B88FD81516E3AEA144400DD0A6 /* results_notifier.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = results_notifier.cpp; path = Realm/ObjectStore/src/impl/results_notifier.cpp; sourceTree = "<group>"; };
 		F6A71D024830F72D7BB7584015F3AA7B /* ALCameraViewController-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ALCameraViewController-Info.plist"; sourceTree = "<group>"; };
 		F7070EB388F62FAA2E866E9E7CF7814F /* PhotoLibraryAuthorizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhotoLibraryAuthorizer.swift; path = ALCameraViewController/Utilities/PhotoLibraryAuthorizer.swift; sourceTree = "<group>"; };
+		F78BE88C23C6EC31006E6B25 /* UIAlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlbumsView.swift; sourceTree = "<group>"; };
+		F78BE88E23C6EDB5006E6B25 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		F78C4A4A6D9B7E818DD2BA362F0F7866 /* Realm.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Realm.swift; path = RealmSwift/Realm.swift; sourceTree = "<group>"; };
 		F7A4B9800FB6E9D4A90BB1F9FDD18062 /* RLMListBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMListBase.h; path = include/RLMListBase.h; sourceTree = "<group>"; };
 		F9EB730FA5767D625CA33427524FF91D /* RLMArray.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = RLMArray.mm; path = Realm/RLMArray.mm; sourceTree = "<group>"; };
@@ -1539,6 +1543,8 @@
 		69BD2D275F66D9C9B29D13E684CC1D26 /* ALCameraViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F78BE88E23C6EDB5006E6B25 /* AlbumCell.swift */,
+				F78BE88C23C6EC31006E6B25 /* UIAlbumsView.swift */,
 				EEF63DCB17176DA413BF9625A29BA7D8 /* CameraGlobals.swift */,
 				BF88A66D0AB4A16744F8C71D6D518859 /* CameraShot.swift */,
 				56DBA93D76DBAFFFD22EE5C0B2D24BB9 /* CameraView.swift */,
@@ -2825,12 +2831,14 @@
 				9B8A5909537F10F04A0D82081CCA52E7 /* CropOverlay.swift in Sources */,
 				5F840FA13765A0D6BF34CCFA6EA68451 /* ImageCell.swift in Sources */,
 				0D7F2B06E5B264AF3B0436FAAF7001E9 /* ImageFetcher.swift in Sources */,
+				F78BE88D23C6EC31006E6B25 /* UIAlbumsView.swift in Sources */,
 				8E3EB158C3A8BB20304A8CE621D0413E /* PermissionsView.swift in Sources */,
 				1CDC4C5C8DFBCDA88A23E5ED89390001 /* PhotoLibraryAuthorizer.swift in Sources */,
 				2D39D249329E62AAFDA081D938CFE9EE /* PhotoLibraryViewController.swift in Sources */,
 				5F0B7CEA3CB8897B3A6FF4835F312405 /* SingleImageFetcher.swift in Sources */,
 				1EDA197B6CB8DAE35BA77029072B3132 /* SingleImageSaver.swift in Sources */,
 				F8B2ED19A8D7F58ADB3E699C01A70D36 /* UIButtonExtensions.swift in Sources */,
+				F78BE88F23C6EDB5006E6B25 /* AlbumCell.swift in Sources */,
 				4ED3568F804CF6A0F501F20A2848CD5E /* UIViewExtensions.swift in Sources */,
 				5C0CE1FBDB1A14808BC890B6B4817340 /* Utilities.swift in Sources */,
 				45D474D1A85978BA0003DB8116F5B802 /* VolumeControl.swift in Sources */,

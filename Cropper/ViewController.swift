@@ -51,25 +51,6 @@ class ViewController: UIViewController, TOCropViewControllerDelegate, GADRewardB
     self.banner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     self.banner.topAnchor.constraint(equalTo: view.topAnchor,
                                      constant: UIApplication.shared.statusBarFrame.height).isActive = true
-    
-//    view.addSubview(view_albums)
-//    view_albums.onDidTappedCancel = {
-//      UIView.animate(withDuration: 0.3) {
-//        self.view_albums.alpha = 0
-//      }
-//    }
-//    view_albums.onDidChosenAlbum = { album in
-//      self.cameraRollAppearance(for: album)
-//    }
-//    view_albums.snp.makeConstraints { (make) in
-//      if #available(iOS 11.0, *) {
-//        make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-//      } else {
-//        make.bottom.equalTo(view.snp.bottom).offset(-16)
-//      }
-//      make.left.equalTo(view.snp.left)
-//      make.right.equalTo(view.snp.right)
-//    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -128,6 +109,7 @@ class ViewController: UIViewController, TOCropViewControllerDelegate, GADRewardB
     cropViewController.cropView.aspectRatioLockEnabled = true
     cropViewController.delegate = self
     self.cropView = cropViewController
+    cropViewController.cropView.gridOverlayView.removeStamp(Subscription.hasSubscription, removeButton: true)
     
     cropViewController.modalPresentationStyle = .fullScreen
     self.present(cropViewController, animated: true, completion: {

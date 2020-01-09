@@ -160,6 +160,11 @@ open class CameraViewController: UIViewController {
         return view
     }()
   
+  private let view_albums: UIAlbumsView = {
+    let view = UIAlbumsView()
+    return view
+  }()
+  
   public init(album: String?, croppingEnabled: Bool, allowsLibraryAccess: Bool = true, completion: @escaping CameraViewCompletion) {
         super.init(nibName: nil, bundle: nil)
         onCompletion = completion
@@ -198,6 +203,19 @@ open class CameraViewController: UIViewController {
             containerSwapLibraryButton].forEach({ view.addSubview($0) })
         [swapButton, libraryButton].forEach({ containerSwapLibraryButton.addSubview($0) })
         view.setNeedsUpdateConstraints()
+      
+//      view.addSubview(view_albums)
+//      view_albums.onDidChosenAlbum = { album in
+//        self.album = album
+//        
+//        UIView.animate(withDuration: 0.3) {
+//          self.view_albums.alpha = 0
+//        }
+//      }
+//      view_albums.translatesAutoresizingMaskIntoConstraints = false
+//      view_albums.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+//      view_albums.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+//      view_albums.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     /**

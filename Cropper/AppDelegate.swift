@@ -36,13 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       window.makeKeyAndVisible()
     }
     
-    let subscription = Subscription()
-    subscription.expirationDate = Date().addingTimeInterval(86400*86400)
-    let realm = try! Realm()
-    try! realm.write {
-      realm.add(subscription)
-    }
-    
     return true
   }
   

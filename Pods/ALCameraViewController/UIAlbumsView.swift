@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 import Photos
 
 class UIAlbumsView: UIView {
@@ -41,7 +40,7 @@ class UIAlbumsView: UIView {
 
   private let label_section: UILabel = {
     let label = UILabel()
-    label.text = "Albums"
+    label.text = "pictures"
     label.font = UIFont.systemFont(ofSize: 13, weight: .bold)
     label.textColor = UIColor.gray
     return label
@@ -49,6 +48,7 @@ class UIAlbumsView: UIView {
   
   private let tableView: UITableView = {
     let tableView = UITableView()
+    tableView.separatorStyle = .none
     return tableView
   }()
   
@@ -65,40 +65,36 @@ class UIAlbumsView: UIView {
   
   func setup() {
     self.addSubview(button_cancel)
-    button_cancel.snp.makeConstraints { (make) in
-      make.bottom.equalTo(self.snp.bottom).offset(-16)
-      make.left.equalTo(self.snp.left).offset(16)
-      make.right.equalTo(self.snp.right).offset(-16)
-      make.height.equalTo(50)
-    }
+    button_cancel.translatesAutoresizingMaskIntoConstraints = false
+    button_cancel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
+    button_cancel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
+    button_cancel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+    button_cancel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     
     self.addSubview(view_albums)
-    view_albums.snp.makeConstraints { (make) in
-      make.height.equalTo(340)
-      make.bottom.equalTo(button_cancel.snp.bottom)
-      make.left.equalTo(button_cancel.snp.left)
-      make.right.equalTo(button_cancel.snp.right)
-    }
+    view_albums.translatesAutoresizingMaskIntoConstraints = false
+    view_albums.heightAnchor.constraint(equalToConstant: 340).isActive = true
+    view_albums.bottomAnchor.constraint(equalTo: button_cancel.topAnchor).isActive = true
+    view_albums.leftAnchor.constraint(equalTo: button_cancel.leftAnchor).isActive = true
+    view_albums.rightAnchor.constraint(equalTo: button_cancel.rightAnchor).isActive = true
     
     view_albums.addSubview(label_section)
-    label_section.snp.makeConstraints { (make) in
-      make.top.equalTo(view_albums.snp.top).offset(14)
-      make.left.equalTo(view_albums.snp.left).offset(16)
-    }
+    label_section.translatesAutoresizingMaskIntoConstraints = false
+    label_section.topAnchor.constraint(equalTo: view_albums.topAnchor, constant: 14).isActive = true
+    label_section.leftAnchor.constraint(equalTo: view_albums.leftAnchor, constant: 16).isActive = true
     
     view_albums.addSubview(tableView)
     tableView.delegate = self
     tableView.dataSource = self
     
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.topAnchor.constraint(equalTo: label_section.bottomAnchor, constant: 8).isActive = true
+    tableView.leftAnchor.constraint(equalTo: view_albums.leftAnchor).isActive = true
+    tableView.rightAnchor.constraint(equalTo: view_albums.rightAnchor).isActive = true
+    tableView.bottomAnchor.constraint(equalTo: view_albums.bottomAnchor).isActive = true
+    
     tableView.register(AlbumCell.self,
                        forCellReuseIdentifier: "cell_album")
-    
-    tableView.snp.makeConstraints { (make) in
-      make.top.equalTo(label_section.snp.bottom).offset(8)
-      make.left.equalTo(view_albums.snp.left)
-      make.right.equalTo(view_albums.snp.right)
-      make.bottom.equalTo(view_albums.snp.bottom)
-    }
   }
   
   @objc func button_cancel_tapped() {

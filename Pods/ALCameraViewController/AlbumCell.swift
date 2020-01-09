@@ -13,7 +13,7 @@ class AlbumCell: UITableViewCell {
   
   private let imageView_thumbnail: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = UIColor(hex: "FFEBEB")
+    imageView.backgroundColor = UIColor.lightGray
     return imageView
   }()
   
@@ -48,12 +48,11 @@ class AlbumCell: UITableViewCell {
   
   func setup() {
     self.addSubview(imageView_thumbnail)
-    imageView_thumbnail.snp.makeConstraints { (make) in
-      make.top.equalTo(self.snp.top).offset(6)
-      make.left.equalTo(self.snp.left).offset(16)
-      make.width.equalTo(50)
-      make.height.equalTo(50)
-    }
+    imageView_thumbnail.translatesAutoresizingMaskIntoConstraints = false
+    imageView_thumbnail.topAnchor.constraint(equalTo: self.topAnchor, constant: 6).isActive = true
+    imageView_thumbnail.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
+    imageView_thumbnail.widthAnchor.constraint(equalToConstant: 50).isActive = true
+    imageView_thumbnail.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
     let stackView = UIStackView(arrangedSubviews: [label_title, label_count])
     stackView.axis = .vertical
@@ -62,10 +61,9 @@ class AlbumCell: UITableViewCell {
     stackView.distribution = .equalSpacing
     self.addSubview(stackView)
     
-    stackView.snp.makeConstraints { (make) in
-      make.centerY.equalTo(imageView_thumbnail.snp.centerY)
-      make.left.equalTo(imageView_thumbnail.snp.right).offset(10)
-    }
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.centerYAnchor.constraint(equalTo: imageView_thumbnail.centerYAnchor).isActive = true
+    stackView.leftAnchor.constraint(equalTo: imageView_thumbnail.rightAnchor, constant: 10).isActive = true
   }
   
   func retrieveThumbnail(for album: PHAssetCollection) {
