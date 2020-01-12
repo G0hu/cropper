@@ -27,6 +27,7 @@ class AlbumCell: UITableViewCell {
     let label = UILabel()
     label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
     label.textColor = UIColor.gray
+    label.isHidden = true
     return label
   }()
   
@@ -41,7 +42,7 @@ class AlbumCell: UITableViewCell {
   
   func configure(with album: PHAssetCollection) {
     label_title.text = album.localizedTitle
-    label_count.text = "\(album.estimatedAssetCount) albums"
+    label_count.text = "\(album.photosCount) pictures"
     
     retrieveThumbnail(for: album)
   }
@@ -92,4 +93,20 @@ class AlbumCell: UITableViewCell {
     }
   }
   
+}
+
+extension PHAssetCollection {
+    var photosCount: Int {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.image.rawValue)
+        let result = PHAsset.fetchAssets(in: self, options: fetchOptions)
+        return result.count
+    }
+
+    var videoCount: Int {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.video.rawValue)
+        let result = PHAsset.fetchAssets(in: self, options: fetchOptions)
+        return result.count
+    }
 }

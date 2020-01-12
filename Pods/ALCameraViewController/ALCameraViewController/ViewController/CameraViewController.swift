@@ -15,14 +15,16 @@ public typealias CameraViewCompletion = (UIImage?, PHAsset?) -> Void
 public extension CameraViewController {
     /// Provides an image picker wrapped inside a UINavigationController instance
   class func imagePickerViewController(for album: String? = nil, croppingEnabled: Bool, completion: @escaping CameraViewCompletion) -> UINavigationController {
-        let imagePicker = PhotoLibraryViewController()
-        imagePicker.chosenAlbum = album
+        let imagePicker = AlbumLibraryViewController()
+        
+//        let imagePicker = PhotoLibraryViewController()
+//        imagePicker.chosenAlbum = album
         let navigationController = UINavigationController(rootViewController: imagePicker)
         
         navigationController.navigationBar.barTintColor = UIColor.black
         navigationController.navigationBar.barStyle = UIBarStyle.black
         navigationController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-
+    
         imagePicker.onSelectionComplete = { [weak imagePicker] asset in
             if let asset = asset {
                 let confirmController = ConfirmViewController(asset: asset, allowsCropping: croppingEnabled)

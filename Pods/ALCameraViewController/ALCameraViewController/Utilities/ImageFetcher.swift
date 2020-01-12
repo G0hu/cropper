@@ -58,12 +58,28 @@ public class ImageFetcher {
   private func onAuthorized() {
     let options = PHFetchOptions()
     
-    if let album = album {
-      options.predicate = NSPredicate(format: "title = %@", album)
-    }
-    
+    print("STARTED FETCHING", Date())
     options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
     libraryQueue.async {
+      print("JOINED ASYNC", Date())
+      if let album = self.album {
+        let collection: PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: nil)
+        
+        for k in 0 ..< collection.count {
+          print("LOOKING FOR ALBUM", Date())
+          let obj:AnyObject! = collection.object(at: k)
+          if obj.title == album {
+            print("FOUND ALBUM", Date())
+            if let assCollection = obj as? PHAssetCollection {
+              print("RETURNED COLLECTION", Date())
+              let results = PHAsset.fetchAssets(in: assCollection, options: options)
+              self.success?(results)
+              return
+            }
+          }
+        }
+      }
+      
       let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: options)
       DispatchQueue.main.async {
         self.success?(assets)

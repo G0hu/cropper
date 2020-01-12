@@ -21,7 +21,7 @@ public class PhotoLibraryViewController: UIViewController {
     internal var assets: PHFetchResult<PHAsset>? = nil
     
     public var onSelectionComplete: PhotoLibraryViewSelectionComplete?
-    
+  
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -74,7 +74,8 @@ public class PhotoLibraryViewController: UIViewController {
     }
     
   @objc func dismissLibrary() {
-        onSelectionComplete?(nil)
+//        onSelectionComplete?(nil)
+    self.navigationController?.popViewController(animated: true)
     }
     
     private func onSuccess(_ photos: PHFetchResult<PHAsset>) {
@@ -91,9 +92,11 @@ public class PhotoLibraryViewController: UIViewController {
     }
     
     private func configureCollectionView() {
-        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCellIdentifier)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+      DispatchQueue.main.async {
+        self.collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCellIdentifier)
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+      }
     }
     
     internal func itemAtIndexPath(_ indexPath: IndexPath) -> PHAsset? {
