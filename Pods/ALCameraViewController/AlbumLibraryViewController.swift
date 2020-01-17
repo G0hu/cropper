@@ -27,15 +27,28 @@ class AlbumLibraryViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    let fetchOptions = PHFetchOptions()
-    let cameraRoll = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .albumRegular, options: fetchOptions)
-    cameraRoll.enumerateObjects { (collection, _, _) in
-      self.albums = [collection]
-    }
-    
-    let results = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
-    results.enumerateObjects { (collection, _, _) in
-      self.albums.append(collection)
+    _ = PhotoLibraryAuthorizer { error in
+      if error == nil {
+        let fetchOptions = PHFetchOptions()
+        let cameraRoll = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: fetchOptions)
+        cameraRoll.enumerateObjects { (collection, _, _) in
+          if collection.photosCount > 0 {
+            self.albums = [collection]
+          }
+        }
+        
+        let results = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
+        results.enumerateObjects { (collection, _, _) in
+          if collection.photosCount > 0 {
+            self.albums.append(collection)
+          }
+        }
+        
+        self.tableView.reloadData()
+      } else {
+        print("error is", error?.localizedDescription)
+//        self.failure?(error!)
+      }
     }
     
     setup()

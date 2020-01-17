@@ -16,7 +16,6 @@
 		9AFE01991EC37B7400642AD3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFE01981EC37B7400642AD3 /* MainViewController.swift */; };
 		9AFE019B1EC3B2E000642AD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AFE019A1EC3B2E000642AD3 /* GoogleService-Info.plist */; };
 		A11341E8F5966FBB88A24F88 /* Pods_Cropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F153DAD3AB98F104B50B1B /* Pods_Cropper.framework */; };
-		F78BE87C23C5B292006E6B25 /* UIAlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78BE87B23C5B292006E6B25 /* UIAlbumsView.swift */; };
 		F78BE87E23C5B59B006E6B25 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78BE87D23C5B59B006E6B25 /* AlbumCell.swift */; };
 		F78BE88023C5B972006E6B25 /* HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78BE87F23C5B972006E6B25 /* HEX.swift */; };
 		F7C3AE8B23C46225004EBC27 /* PurchasesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C3AE8A23C46225004EBC27 /* PurchasesService.swift */; };
@@ -52,7 +51,6 @@
 		9AFE019A1EC3B2E000642AD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D3F153DAD3AB98F104B50B1B /* Pods_Cropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BE0C5DC4F22D5B943B6184 /* Pods-Cropper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cropper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cropper/Pods-Cropper.release.xcconfig"; sourceTree = "<group>"; };
-		F78BE87B23C5B292006E6B25 /* UIAlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAlbumsView.swift; path = ../Pods/ALCameraViewController/UIAlbumsView.swift; sourceTree = "<group>"; };
 		F78BE87D23C5B59B006E6B25 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumCell.swift; path = ../Pods/ALCameraViewController/AlbumCell.swift; sourceTree = "<group>"; };
 		F78BE87F23C5B972006E6B25 /* HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HEX.swift; sourceTree = "<group>"; };
 		F7C3AE8A23C46225004EBC27 /* PurchasesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesService.swift; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 				F7C3AE8E23C46481004EBC27 /* Analytics.swift */,
 				9AFE01981EC37B7400642AD3 /* MainViewController.swift */,
 				9A2989601E6EFA7300DBDA63 /* ViewController.swift */,
-				F78BE87B23C5B292006E6B25 /* UIAlbumsView.swift */,
 				F78BE87F23C5B972006E6B25 /* HEX.swift */,
 				F78BE87D23C5B59B006E6B25 /* AlbumCell.swift */,
 				F7C3AE9023C467CD004EBC27 /* Alert.swift */,
@@ -265,7 +262,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F78BE87C23C5B292006E6B25 /* UIAlbumsView.swift in Sources */,
 				F78BE88023C5B972006E6B25 /* HEX.swift in Sources */,
 				F7C3AE9123C467CD004EBC27 /* Alert.swift in Sources */,
 				F7C3AE8B23C46225004EBC27 /* PurchasesService.swift in Sources */,

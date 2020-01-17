@@ -74,8 +74,7 @@ public class PhotoLibraryViewController: UIViewController {
     }
     
   @objc func dismissLibrary() {
-//        onSelectionComplete?(nil)
-    self.navigationController?.popViewController(animated: true)
+      self.navigationController?.popViewController(animated: true)
     }
     
     private func onSuccess(_ photos: PHFetchResult<PHAsset>) {

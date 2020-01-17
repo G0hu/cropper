@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     Amplitude.instance().initializeApiKey("7a92b7d7891e9a46d94fefb5eedab314")
-    FirebaseApp.configure()
+    Analytics.shared.logEvent(name: "App launch")
     
-    print("DID FINISH")
+    FirebaseApp.configure()
     
     setUpInApps()
     self.window = UIWindow(frame: UIScreen.main.bounds)

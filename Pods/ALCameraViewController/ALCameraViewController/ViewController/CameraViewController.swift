@@ -16,9 +16,6 @@ public extension CameraViewController {
     /// Provides an image picker wrapped inside a UINavigationController instance
   class func imagePickerViewController(for album: String? = nil, croppingEnabled: Bool, completion: @escaping CameraViewCompletion) -> UINavigationController {
         let imagePicker = AlbumLibraryViewController()
-        
-//        let imagePicker = PhotoLibraryViewController()
-//        imagePicker.chosenAlbum = album
         let navigationController = UINavigationController(rootViewController: imagePicker)
         
         navigationController.navigationBar.barTintColor = UIColor.black
@@ -162,11 +159,6 @@ open class CameraViewController: UIViewController {
         return view
     }()
   
-  private let view_albums: UIAlbumsView = {
-    let view = UIAlbumsView()
-    return view
-  }()
-  
   public init(album: String?, croppingEnabled: Bool, allowsLibraryAccess: Bool = true, completion: @escaping CameraViewCompletion) {
         super.init(nibName: nil, bundle: nil)
         onCompletion = completion
@@ -205,19 +197,6 @@ open class CameraViewController: UIViewController {
             containerSwapLibraryButton].forEach({ view.addSubview($0) })
         [swapButton, libraryButton].forEach({ containerSwapLibraryButton.addSubview($0) })
         view.setNeedsUpdateConstraints()
-      
-//      view.addSubview(view_albums)
-//      view_albums.onDidChosenAlbum = { album in
-//        self.album = album
-//        
-//        UIView.animate(withDuration: 0.3) {
-//          self.view_albums.alpha = 0
-//        }
-//      }
-//      view_albums.translatesAutoresizingMaskIntoConstraints = false
-//      view_albums.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//      view_albums.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//      view_albums.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     /**
@@ -551,22 +530,29 @@ open class CameraViewController: UIViewController {
     }
     
     internal func showLibrary() {
-      print("SHOW LIBRARY NOW")
-      let imagePicker = CameraViewController.imagePickerViewController(for: album, croppingEnabled: allowCropping) { [weak self] image, asset in
-            defer {
-                self?.dismiss(animated: true, completion: nil)
-            }
+      _ = PhotoLibraryAuthorizer { error in
+      if error == nil {
+        let imagePicker = CameraViewController.imagePickerViewController(for: self.album, croppingEnabled: self.allowCropping) { [weak self] image, asset in
+              defer {
+                  self?.dismiss(animated: true, completion: nil)
+              }
 
-            guard let image = image, let asset = asset else {
-                return
-            }
+              guard let image = image, let asset = asset else {
+                  return
+              }
 
-            self?.onCompletion?(image, asset)
+              self?.onCompletion?(image, asset)
+          }
+          
+        self.present(imagePicker, animated: true) { [weak self] in
+              self?.cameraView.stopSession()
+          }
+      } else {
+        if let error = error {
+          print(error.localizedDescription)
         }
-        
-        present(imagePicker, animated: true) { [weak self] in
-            self?.cameraView.stopSession()
-        }
+      }
+      }
     }
     
     internal func toggleFlash() {
