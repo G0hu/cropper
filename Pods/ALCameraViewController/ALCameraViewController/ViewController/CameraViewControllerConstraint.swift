@@ -57,7 +57,7 @@ extension CameraViewController {
             item: cameraButton,
             attribute: attribute,
             relatedBy: .equal,
-            toItem: view,
+            toItem: view.safeAreaLayoutGuide,
             attribute: attribute,
             multiplier: 1.0,
             constant: attribute == .right || attribute == .bottom ? -8 : 8)
